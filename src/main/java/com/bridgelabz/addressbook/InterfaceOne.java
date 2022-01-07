@@ -4,6 +4,7 @@ public interface InterfaceOne {
 	
 		void createContact();
 		void addContact();
+		void editContact();
 		void display();
 }
 
