@@ -86,8 +86,7 @@ public class Person implements InterfaceOne  {
 	    		System.out.println("Contact is not present in book");
 	    		return;
 	    	}
-    }
-        
+    }   
     public void display() {
         System.out.println("Created contact list is");
         for(Map.Entry m : detailsBook.entrySet()) {
