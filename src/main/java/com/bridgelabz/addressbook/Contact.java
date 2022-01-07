@@ -68,7 +68,4 @@ public class Contact {
 					+ state + ", email=" + email + ", city=" + city + ", zip=" + zip + ", phoneNumber=" + phoneNumber
 					+ "]";
 		}
-		
-		
-
 }
