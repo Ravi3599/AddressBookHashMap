@@ -12,6 +12,8 @@ public class AddressBookMain {
 		person1.addToBook();
 		person1.operation();
 		person1.displayBook();
+		person1.searchPerson();
+		
 	}
 }
 

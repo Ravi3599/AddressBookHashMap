@@ -10,5 +10,6 @@ public interface InterfaceOne {
 		void displayBook();
 		void addToBook();
 		void operation();
+		void searchPerson();
 }
 
