@@ -16,5 +16,7 @@ public interface InterfaceOne {
 		void addContactByState();
 		void viewByState();
 		void sortAddressBook();
+		void sortByCity();
+		void sortByState();
 }
 
