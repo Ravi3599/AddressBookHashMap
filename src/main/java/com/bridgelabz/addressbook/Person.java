@@ -148,7 +148,7 @@ public class Person implements InterfaceOne  {
     	}
     }
     public void viewByCity() {
-    	System.out.println("Enter person name to search ");
+    	System.out.println("Enter city name to search ");
     	String cityName = sc.next();
 		Map<String,Contact> detailsByCity =personByCity.entrySet().stream().filter(e->e.getKey().equals(cityName)).collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
 		if(detailsByCity !=null) {
@@ -159,8 +159,9 @@ public class Person implements InterfaceOne  {
 		}
     }
     public void viewByState() {
-    	
-		Map<String,Contact> detailsByState =personByState.entrySet().stream().filter(e->e.getKey().equals("Karnataka")).collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
+    	System.out.println("Enter state name to search ");
+    	String stateName = sc.next();
+		Map<String,Contact> detailsByState =personByState.entrySet().stream().filter(e->e.getKey().equals(stateName)).collect(Collectors.toMap(e->e.getKey(), e->e.getValue()));
 		if(detailsByState!=null) {
 		    System.out.println(detailsByState);
 		    System.out.println("Number of person belonging to state is: "+detailsByState.size());
