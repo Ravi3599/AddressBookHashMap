@@ -1,7 +1,13 @@
 package com.bridgelabz.addressbook;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
@@ -193,4 +199,46 @@ public class Person implements InterfaceOne  {
 		System.out.println("Sorted Address Book "+sortedByState);
 		
 	}
+public void writeToAddressBookFile() {
+		
+		String bookName = "personByCity";
+		String fileName = bookName+".txt";
+		
+		StringBuffer addressBookBuffer = new StringBuffer();
+		personByCity.values().stream().forEach(contact -> {
+			String personDataString = contact.toString().concat("\n");
+			addressBookBuffer.append(personDataString);
+		});
+
+		try {
+			Files.write(Paths.get(fileName), addressBookBuffer.toString().getBytes());
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public List<String> readDataFromFile() {
+		
+		List<String> addressList = new ArrayList<String>();
+		String bookName ="personByCity";
+		String fileName = bookName+".txt";
+		System.out.println("Reading from : "+fileName+"\n");
+		try {
+			Files.lines(new File(fileName).toPath())
+				.map(line -> line.trim())
+				.forEach(employeeDetails -> {
+					System.out.println(employeeDetails);
+					addressList.add(employeeDetails);
+			});
+			
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		return addressList;
+	}
+
+
 }

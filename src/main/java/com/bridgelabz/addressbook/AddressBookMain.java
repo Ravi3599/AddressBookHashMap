@@ -20,6 +20,8 @@ public class AddressBookMain {
 		person1.sortAddressBook();
 		person1.sortByCity();
 		person1.sortByState();
+		person1.writeToAddressBookFile();
+		person1.readDataFromFile();
 	}
 }
 
