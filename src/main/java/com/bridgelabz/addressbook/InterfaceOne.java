@@ -28,5 +28,7 @@ public interface InterfaceOne {
 		public List<String> readDataFromFile();
 		public void writeDataToCSV() throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException;
 		public <CsvValidationException extends Throwable> void readDataFromCSV() throws IOException, CsvValidationException;
+		public void writeDataToJson() throws IOException;
+		public void readDataFromJson() throws IOException;
 }
 
