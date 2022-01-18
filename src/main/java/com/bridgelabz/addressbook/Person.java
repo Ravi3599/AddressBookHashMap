@@ -2,6 +2,8 @@ package com.bridgelabz.addressbook;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -12,6 +14,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 public class Person implements InterfaceOne  {
     static Scanner sc = new Scanner(System.in);
@@ -239,6 +248,42 @@ public void writeToAddressBookFile() {
 		}
 		return addressList;
 	}
+	public void writeDataToCSV() throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
+		
+		String fileName = "./PersonContacts.csv";
+        try (Writer writer = Files.newBufferedWriter(Paths.get(fileName));) {
+        	
+            StatefulBeanToCsvBuilder<Contact> builder = new  StatefulBeanToCsvBuilder<>(writer);
+            StatefulBeanToCsv<Contact> beanWriter = builder.build();
+            ArrayList<Contact> listOfContacts= detailsBook.values().stream().collect(Collectors.toCollection(ArrayList::new));
+            beanWriter.write(listOfContacts);
+            writer.close();
+            System.out.println("Written To CSV Successfully !");
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public <CsvValidationException extends Throwable> void readDataFromCSV() throws IOException, CsvValidationException {
+    	
+    	String fileName = "./PersonContacts.csv";
+        try (Reader reader = Files.newBufferedReader(Paths.get(fileName));
+             CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();){
+        	
+            String[] nextRecord;
+            while ((nextRecord = csvReader.readNext()) != null) {
+                System.out.println("First Name = " + nextRecord[2]);
+                System.out.println("Last Name = " + nextRecord[3]);
+                System.out.println("City = " + nextRecord[0]);
+                System.out.println("State = " + nextRecord[5]);
+                System.out.println("Email = " + nextRecord[1]);
+                System.out.println("Phone Number = " + nextRecord[4]);
+                System.out.println("Zip Code = " + nextRecord[6]);
+                System.out.println("\n");
+            }
+        }
+    }
 
 
 }
