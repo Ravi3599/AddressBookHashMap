@@ -1,7 +1,12 @@
 package com.bridgelabz.addressbook;
 
+import java.io.IOException;
+
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 public class AddressBookMain {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
 
 		InterfaceOne person1 = new Person();
 		person1.createContact();
@@ -22,6 +27,10 @@ public class AddressBookMain {
 		person1.sortByState();
 		person1.writeToAddressBookFile();
 		person1.readDataFromFile();
+		person1.writeDataToJson();
+		person1.readDataFromJson();
+		person1.writeDataToCSV() ;
+		person1.readDataFromCSV() ;	
 	}
 }
 
